@@ -3,14 +3,15 @@
  */
 // Import LightningChartJS
 const lcjs = require('@arction/lcjs')
- 
+
 // Extract required parts from LightningChartJS.
 const {
     lightningChart,
     AxisTickStrategies,
-    DataPatterns
+    DataPatterns,
+    Themes
 } = lcjs
- 
+
 // Import data-generator from 'xydata'-library.
 const {
     createProgressiveTraceGenerator
@@ -18,6 +19,7 @@ const {
 
 // Create Dashboard.
 const db = lightningChart().Dashboard({
+    // theme: Themes.dark 
     numberOfRows: 2,
     numberOfColumns: 1
 })
@@ -26,27 +28,36 @@ const chartDefaultOrigin = db.createChartXY({
     columnIndex: 0,
     rowIndex: 0,
     columnSpan: 1,
-    rowSpan: 1,
-    // Use the DateTime Axis TickStrategy with the default origin.
-    chartXYOptions: { defaultAxisXTickStrategy: AxisTickStrategies.DateTime() },
+    rowSpan: 1
 })
 const chartModifiedOrigin = db.createChartXY({
     columnIndex: 0,
     rowIndex: 1,
     columnSpan: 1,
-    rowSpan: 1,
-    // Use the DateTime Axis TickStrategy with the origin set to current day.
-    chartXYOptions: { defaultAxisXTickStrategy: AxisTickStrategies.DateTime(new Date())}
+    rowSpan: 1
 })
+
+// Use the DateTime Axis TickStrategy with the default origin.
+chartDefaultOrigin
+    .getDefaultAxisX()
+    .setTickStrategy(AxisTickStrategies.DateTime)
+
+// Use the DateTime Axis TickStrategy with the origin set to current day.
+chartModifiedOrigin
+    .getDefaultAxisX()
+    .setTickStrategy(
+        AxisTickStrategies.DateTime,
+        (tickStrategy) => tickStrategy.setDateOrigin(new Date()
+        ))
 // Setup the charts. 
 chartDefaultOrigin
     .setTitle('Default origin')
     .getDefaultAxisY()
-        .setTitle('Value')
+    .setTitle('Value')
 chartModifiedOrigin
     .setTitle('Modified origin')
     .getDefaultAxisY()
-        .setTitle('Value')
+    .setTitle('Value')
 
 // Create progressive line series for both charts.
 // Using the DataPatterns object to select the horizontalProgressive pattern for the line series.
@@ -64,6 +75,5 @@ createProgressiveTraceGenerator()
     .then(data => {
         // Use same data on both Series for demonstration purposes.
         series1.add(data.map((point) => ({ x: point.x * dataFrequency, y: point.y })))
-        series2.add(data.map((point) => ({ x: point.x * dataFrequency, y: point.y })))    
-})
-    
+        series2.add(data.map((point) => ({ x: point.x * dataFrequency, y: point.y })))
+    })

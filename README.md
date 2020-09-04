@@ -32,12 +32,14 @@ The *origin-date* can be specified to whichever DateTime is desired. It is done 
 const originDate = new Date(2002, 0, 1, 13)
 // Create DateTime AxisTickStrategy with specified originDate.
 const dateTimeTickStrategy = AxisTickStrategies.DateTime(originDate)
-// Use created DateTime AxisTickStrategy in the default X Axis of the chart
-const chart = lightningChart().ChartXY({
-    defaultAxisXTickStrategy: AxisTickStrategies.DateTime(dateTimeTickStrategy)
-})
-// Use created DateTime AxisTickStrategy in a new Y Axis
-const dateTimeAxis = chart.addAxisY( false, dateTimeTickStrategy )
+// Create a chart
+const chart = lightningChart().ChartXY({})
+// Get the default X Axis
+chart.getDefaultAxisX()
+    // Set the Tick Strategy to use
+    .setTickStrategy( AxisTickStrategies.DateTime,
+    // Use created DateTime AxisTickStrategy in the X Axis
+    (tickStrategy) => tickStrategy.setDateOrigin(dat1eTimeTickStrategy) )
 ```
 
 If this *TickStrategy* would be supplied to an *X-Axis*, it would effectively mean that its scale would start from 1st of January 2002 14PM, so a *XY-point* with coordinates `{ x: 0, y: 0 }` would be formated as `{ x: 1.1.2002 14:00, y: 0 }`.
@@ -47,11 +49,11 @@ It is worth mentioning that big *DateTime*-intervals can produce severe precisio
 
 ## API Links
 
-* XY cartesian chart: [ChartXY]
-* Scroll strategies: [AxisScrollStrategies]
-* Progressive line series: [ProgressiveLineSeries]
-* Data patterns: [DataPatterns]
-* Progressive trace data generator: [ProgressiveTraceGenerator]
+* [XY cartesian chart]
+* [Scroll strategies]
+* [Progressive line series]
+* [Data patterns]
+* [Progressive trace data generator]
 
 
 ## Support
@@ -75,9 +77,9 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © Arction Ltd 2009-2020. All rights reserved.
 
 
-[ChartXY]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/chartxy.html
-[AxisScrollStrategies]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/globals.html#axisscrollstrategies
-[ProgressiveLineSeries]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/progressivelineseries.html
-[DataPatterns]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/globals.html#datapatterns
-[ProgressiveTraceGenerator]: https://arction.github.io/xydata/classes/progressivetracegenerator.html
+[XY cartesian chart]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/chartxy.html
+[Scroll strategies]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/globals.html#axisscrollstrategies
+[Progressive line series]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/progressivelineseries.html
+[Data patterns]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/globals.html#datapatterns
+[Progressive trace data generator]: https://arction.github.io/xydata/classes/progressivetracegenerator.html
 
