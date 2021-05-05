@@ -51,7 +51,7 @@ It is worth mentioning that big *DateTime*-intervals can produce severe precisio
 
 * [XY cartesian chart]
 * [Scroll strategies]
-* [Progressive line series]
+* [Line series]
 * [Data patterns]
 * [Progressive trace data generator]
 
@@ -77,9 +77,9 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © Arction Ltd 2009-2020. All rights reserved.
 
 
-[XY cartesian chart]: https://www.arction.com/lightningchart-js-api-documentation/v2.2.0/classes/chartxy.html
-[Scroll strategies]: https://www.arction.com/lightningchart-js-api-documentation/v2.2.0/globals.html#axisscrollstrategies
-[Progressive line series]: https://www.arction.com/lightningchart-js-api-documentation/v2.2.0/classes/progressivelineseries.html
-[Data patterns]: https://www.arction.com/lightningchart-js-api-documentation/v2.2.0/globals.html#datapatterns
+[XY cartesian chart]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.0/classes/chartxy.html
+[Scroll strategies]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.0/globals.html#axisscrollstrategies
+[Line series]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.0/classes/lineseries.html
+[Data patterns]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.0/globals.html#datapatterns
 [Progressive trace data generator]: https://arction.github.io/xydata/classes/progressivetracegenerator.html
 

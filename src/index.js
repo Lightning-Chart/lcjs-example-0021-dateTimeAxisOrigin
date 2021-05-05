@@ -59,10 +59,9 @@ chartModifiedOrigin
     .getDefaultAxisY()
     .setTitle('Value')
 
-// Create progressive line series for both charts.
-// Using the DataPatterns object to select the horizontalProgressive pattern for the line series.
-const series1 = chartDefaultOrigin.addLineSeries({ dataPattern: DataPatterns.horizontalProgressive })
-const series2 = chartModifiedOrigin.addLineSeries({ dataPattern: DataPatterns.horizontalProgressive })
+// Create line series for both charts.
+const series1 = chartDefaultOrigin.addLineSeries()
+const series2 = chartModifiedOrigin.addLineSeries()
 
 // Create a multiplier to set each point on X Axis correspond to 1 hour of time.
 const dataFrequency = 1000 * 60 * 60
