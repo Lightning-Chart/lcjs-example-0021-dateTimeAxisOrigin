@@ -19,7 +19,7 @@ const {
 
 // Create Dashboard.
 const db = lightningChart().Dashboard({
-    // theme: Themes.dark 
+    // theme: Themes.darkGold 
     numberOfRows: 2,
     numberOfColumns: 1
 })
