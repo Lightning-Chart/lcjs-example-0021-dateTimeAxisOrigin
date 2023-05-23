@@ -8,7 +8,7 @@ const lcjs = require('@arction/lcjs')
 const xydata = require('@arction/xydata')
 
 // Extract required parts from LightningChartJS.
-const { lightningChart, AxisTickStrategies, DataPatterns, Themes } = lcjs
+const { lightningChart, AxisTickStrategies, Themes } = lcjs
 
 // Import data-generator from 'xydata'-library.
 const { createProgressiveTraceGenerator } = xydata
@@ -33,11 +33,18 @@ const chartModifiedOrigin = db.createChartXY({
     rowSpan: 1,
 })
 
+
+
 // Use the DateTime Axis TickStrategy with the default origin.
 chartDefaultOrigin.getDefaultAxisX().setTickStrategy(AxisTickStrategies.DateTime)
 
 // Use the DateTime Axis TickStrategy with the origin set to current day.
-chartModifiedOrigin.getDefaultAxisX().setTickStrategy(AxisTickStrategies.DateTime, (tickStrategy) => tickStrategy.setDateOrigin(new Date()))
+// Decide on an origin for DateTime axis.
+const dateOrigin = new Date(2000, 1, 1)
+const dateOriginTime = dateOrigin.getTime()
+chartModifiedOrigin.getDefaultAxisX().setTickStrategy(
+    AxisTickStrategies.DateTime, (tickStrategy) => tickStrategy.setDateOrigin(dateOrigin)
+)
 // Setup the charts.
 chartDefaultOrigin.setTitle('Default origin').getDefaultAxisY().setTitle('Value')
 chartModifiedOrigin.setTitle('Modified origin').getDefaultAxisY().setTitle('Value')
@@ -46,9 +53,6 @@ chartModifiedOrigin.setTitle('Modified origin').getDefaultAxisY().setTitle('Valu
 const series1 = chartDefaultOrigin.addLineSeries()
 const series2 = chartModifiedOrigin.addLineSeries()
 
-// Create a multiplier to set each point on X Axis correspond to 1 hour of time.
-const dataFrequency = 1000 * 60 * 60
-
 // Generate traced points using 'xydata'-library.
 createProgressiveTraceGenerator()
     .setNumberOfPoints(1000)
@@ -56,6 +60,9 @@ createProgressiveTraceGenerator()
     .toPromise()
     .then((data) => {
         // Use same data on both Series for demonstration purposes.
-        series1.add(data.map((point) => ({ x: point.x * dataFrequency, y: point.y })))
-        series2.add(data.map((point) => ({ x: point.x * dataFrequency, y: point.y })))
+        series1.add(data)
+        series2.add(data)
+        chartDefaultOrigin.getDefaultAxisX().fit()
+        chartModifiedOrigin.getDefaultAxisX().fit()
     })
+
