@@ -14,6 +14,7 @@ const { lightningChart, AxisTickStrategies, Themes } = lcjs
 const { createProgressiveTraceGenerator } = xydata
 
 // Create Dashboard.
+// NOTE: Using `Dashboard` is not recommended for new applications. Find latest recommendations here: https://lightningchart.com/js-charts/docs/basic-topics/grouping-charts/
 const db = lightningChart().Dashboard({
     // theme: Themes.darkGold
     numberOfRows: 2,
@@ -33,8 +34,6 @@ const chartModifiedOrigin = db.createChartXY({
     rowSpan: 1,
 })
 
-
-
 // Use the DateTime Axis TickStrategy with the default origin.
 chartDefaultOrigin.getDefaultAxisX().setTickStrategy(AxisTickStrategies.DateTime)
 
@@ -42,9 +41,7 @@ chartDefaultOrigin.getDefaultAxisX().setTickStrategy(AxisTickStrategies.DateTime
 // Decide on an origin for DateTime axis.
 const dateOrigin = new Date(2000, 1, 1)
 const dateOriginTime = dateOrigin.getTime()
-chartModifiedOrigin.getDefaultAxisX().setTickStrategy(
-    AxisTickStrategies.DateTime, (tickStrategy) => tickStrategy.setDateOrigin(dateOrigin)
-)
+chartModifiedOrigin.getDefaultAxisX().setTickStrategy(AxisTickStrategies.DateTime, (tickStrategy) => tickStrategy.setDateOrigin(dateOrigin))
 // Setup the charts.
 chartDefaultOrigin.setTitle('Default origin').getDefaultAxisY().setTitle('Value')
 chartModifiedOrigin.setTitle('Modified origin').getDefaultAxisY().setTitle('Value')
@@ -65,4 +62,3 @@ createProgressiveTraceGenerator()
         chartDefaultOrigin.getDefaultAxisX().fit()
         chartModifiedOrigin.getDefaultAxisX().fit()
     })
-
