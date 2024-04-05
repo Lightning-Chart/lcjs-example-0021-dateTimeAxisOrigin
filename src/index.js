@@ -15,7 +15,9 @@ const { createProgressiveTraceGenerator } = xydata
 
 // Create Dashboard.
 // NOTE: Using `Dashboard` is not recommended for new applications. Find latest recommendations here: https://lightningchart.com/js-charts/docs/basic-topics/grouping-charts/
-const db = lightningChart().Dashboard({
+const db = lightningChart({
+            resourcesBaseUrl: new URL(document.head.baseURI).origin + new URL(document.head.baseURI).pathname + 'resources/',
+        }).Dashboard({
     theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined,
     numberOfRows: 2,
     numberOfColumns: 1,
