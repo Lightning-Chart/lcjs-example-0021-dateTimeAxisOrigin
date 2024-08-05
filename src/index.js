@@ -2,10 +2,10 @@
  * LightningChart JS Example that showcases using origin with Axis TickStrategies.
  */
 // Import LightningChartJS
-const lcjs = require('@arction/lcjs')
+const lcjs = require('@lightningchart/lcjs')
 
 // Import xydata
-const xydata = require('@arction/xydata')
+const xydata = require('@lightningchart/xydata')
 
 // Extract required parts from LightningChartJS.
 const { lightningChart, AxisTickStrategies, Themes } = lcjs
