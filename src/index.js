@@ -49,8 +49,8 @@ chartDefaultOrigin.setTitle('Default origin').getDefaultAxisY().setTitle('Value'
 chartModifiedOrigin.setTitle('Modified origin').getDefaultAxisY().setTitle('Value')
 
 // Create line series for both charts.
-const series1 = chartDefaultOrigin.addLineSeries()
-const series2 = chartModifiedOrigin.addLineSeries()
+const series1 = chartDefaultOrigin.addPointLineAreaSeries()
+const series2 = chartModifiedOrigin.addPointLineAreaSeries()
 
 // Generate traced points using 'xydata'-library.
 createProgressiveTraceGenerator()
