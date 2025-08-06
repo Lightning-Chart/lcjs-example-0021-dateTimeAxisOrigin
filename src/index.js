@@ -28,12 +28,14 @@ const chartDefaultOrigin = db.createChartXY({
     rowIndex: 0,
     columnSpan: 1,
     rowSpan: 1,
+    legend: { visible: false },
 })
 const chartModifiedOrigin = db.createChartXY({
     columnIndex: 0,
     rowIndex: 1,
     columnSpan: 1,
     rowSpan: 1,
+    legend:  { visible: false },
 })
 
 // Use the DateTime Axis TickStrategy with the default origin.
@@ -59,8 +61,8 @@ createProgressiveTraceGenerator()
     .toPromise()
     .then((data) => {
         // Use same data on both Series for demonstration purposes.
-        series1.add(data)
-        series2.add(data)
+        series1.appendJSON(data)
+        series2.appendJSON(data)
         chartDefaultOrigin.getDefaultAxisX().fit()
         chartModifiedOrigin.getDefaultAxisX().fit()
     })
