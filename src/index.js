@@ -14,7 +14,7 @@ const { lightningChart, AxisTickStrategies, Themes } = lcjs
 const { createProgressiveTraceGenerator } = xydata
 
 // Create Dashboard.
-// NOTE: Using `Dashboard` is not recommended for new applications. Find latest recommendations here: https://lightningchart.com/js-charts/docs/basic-topics/grouping-charts/
+// NOTE: Using `Dashboard` is not recommended for new applications. Find latest recommendations here: https://lightningchart.com/js-charts/docs/more-guides/grouping-charts/
 const db = lightningChart({
             resourcesBaseUrl: new URL(document.head.baseURI).origin + new URL(document.head.baseURI).pathname + 'resources/',
         }).Dashboard({
@@ -35,7 +35,7 @@ const chartModifiedOrigin = db.createChartXY({
     rowIndex: 1,
     columnSpan: 1,
     rowSpan: 1,
-    legend:  { visible: false },
+    legend: { visible: false },
 })
 
 // Use the DateTime Axis TickStrategy with the default origin.
@@ -51,8 +51,8 @@ chartDefaultOrigin.setTitle('Default origin').getDefaultAxisY().setTitle('Value'
 chartModifiedOrigin.setTitle('Modified origin').getDefaultAxisY().setTitle('Value')
 
 // Create line series for both charts.
-const series1 = chartDefaultOrigin.addPointLineAreaSeries()
-const series2 = chartModifiedOrigin.addPointLineAreaSeries()
+const series1 = chartDefaultOrigin.addPointLineAreaSeries({ automaticColorIndex: 1 })
+const series2 = chartModifiedOrigin.addPointLineAreaSeries({ automaticColorIndex: 2 })
 
 // Generate traced points using 'xydata'-library.
 createProgressiveTraceGenerator()
